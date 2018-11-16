@@ -1,11 +1,20 @@
-<!DOCTYPE html>
+﻿<!DOCTYPE html>
 <html lang="en-us">
   <head>
     <meta charset="utf-8">
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
-    <title>Unity WebGL Player | Battle Royale</title>
+    <title>Unity WebGL Player</title>
     <link rel="shortcut icon" href="TemplateData/favicon.ico">
     <link rel="stylesheet" href="TemplateData/style.css">
+      <script>
+          var _JS_UNETWebSockets_SocketCreate_Original = _JS_UNETWebSockets_SocketCreate;
+          _JS_UNETWebSockets_SocketCreate = function (hostId, urlPtr) {
+              var url = Pointer_stringify(urlPtr).replace(/^ws:\/\//, "wss://");
+              urlPtr = Runtime.stackAlloc((url.length << 2) + 1);
+              writeStringToMemory(url, urlPtr);
+              return _JS_UNETWebSockets_SocketCreate_Original(hostId, urlPtr);
+          };
+      </script>
     <script src="TemplateData/UnityProgress.js"></script>  
     <script src="Build/UnityLoader.js"></script>
     <script>
