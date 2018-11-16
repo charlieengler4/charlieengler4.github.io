@@ -1,26 +1,18 @@
 ﻿<!DOCTYPE html>
 <html lang="en-us">
-  <head>
+<head>
     <meta charset="utf-8">
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
-    <title>Unity WebGL Player</title>
+    <title>Unity WebGL Player | Battle Royale</title>
     <link rel="shortcut icon" href="TemplateData/favicon.ico">
     <link rel="stylesheet" href="TemplateData/style.css">
-      <script>
-          var _JS_UNETWebSockets_SocketCreate_Original = _JS_UNETWebSockets_SocketCreate;
-          _JS_UNETWebSockets_SocketCreate = function (hostId, urlPtr) {
-              var url = Pointer_stringify(urlPtr).replace(/^ws:\/\//, "wss://");
-              urlPtr = Runtime.stackAlloc((url.length << 2) + 1);
-              writeStringToMemory(url, urlPtr);
-              return _JS_UNETWebSockets_SocketCreate_Original(hostId, urlPtr);
-          };
-      </script>
-    <script src="TemplateData/UnityProgress.js"></script>  
+    <script src="TemplateData/UnityProgress.js"></script>
+    <script src="Build/UNETSecureWebSockets.jspre"></script>
     <script src="Build/UnityLoader.js"></script>
     <script>
-      var gameInstance = UnityLoader.instantiate("gameContainer", "Build/BattleRoyaleBuild.json", {onProgress: UnityProgress});
+        var gameInstance = UnityLoader.instantiate("gameContainer", "Build/BattleRoyaleBuild.json", { onProgress: UnityProgress });
     </script>
-  </head>
+</head>
   <body>
     <div class="webgl-content">
       <div id="gameContainer" style="width: 960px; height: 600px"></div>
